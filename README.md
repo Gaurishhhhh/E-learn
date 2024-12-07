@@ -2,7 +2,7 @@
 
 A comprehensive e-learning platform built with Flask that allows instructors to create courses and students to enroll and learn.
 
-## First Time Setup
+## Local Development Setup
 
 1. Create and activate a virtual environment:
 ```bash
@@ -32,13 +32,7 @@ This script will:
   - Email: admin@example.com
   - Password: admin123
 
-If you encounter any errors:
-- Ensure your virtual environment is activated
-- Verify all requirements are installed
-- Check if the database path is writable
-- Make sure your database configuration in config.py is correct
-
-## Running the Application
+## Running Locally
 
 1. Start the development server:
 ```bash
@@ -51,6 +45,36 @@ http://localhost:5000
 ```
 
 3. Log in with the admin credentials created above.
+
+## Deploying to AWS EC2
+
+1. Launch and connect to your EC2 instance following the instructions in `deployment_guide.md`
+
+2. Clone the repository on your EC2 instance:
+```bash
+git clone https://github.com/your-username/E-learn.git
+cd E-learn
+```
+
+3. Make the deployment script executable:
+```bash
+chmod +x deploy.sh
+```
+
+4. Run the deployment script:
+```bash
+./deploy.sh
+```
+
+The script will:
+- Install system dependencies
+- Set up Python virtual environment
+- Install Python packages
+- Configure Nginx and Gunicorn
+- Set up the database
+- Start the application
+
+For detailed deployment instructions and troubleshooting, see `deployment_guide.md`
 
 ## Features
 
@@ -81,6 +105,8 @@ e-learning/
 ├── migrations/        # Database migrations
 ├── config.py         # Configuration
 ├── create_admin.py   # Admin user creation
+├── deploy.sh        # Deployment script
+├── deployment_guide.md # EC2 deployment instructions
 └── wsgi.py          # Application entry point
 ```
 
@@ -92,6 +118,24 @@ The application can be configured through environment variables or the config.py
 - `DATABASE_URL`: Database connection URL (defaults to SQLite)
 - `MAIL_USERNAME`: Email for notifications
 - `MAIL_PASSWORD`: Email password
+
+## Production Deployment Considerations
+
+1. SSL/HTTPS Setup:
+   - Follow the SSL setup instructions in deployment_guide.md
+   - Use Certbot for free SSL certificates
+
+2. Database:
+   - Consider using a managed database service for production
+   - Regular backups are recommended
+
+3. File Storage:
+   - For production, consider using AWS S3 for file storage
+   - Ensure proper backup of uploaded files
+
+4. Monitoring:
+   - Set up monitoring for the EC2 instance
+   - Configure logging and alerts
 
 ## Contributing
 
