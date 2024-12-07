@@ -1,96 +1,68 @@
 # E-Learning Platform
 
-A comprehensive e-learning platform built with Flask that enables course management, student learning, forum discussions, and note-taking capabilities.
+A comprehensive e-learning platform built with Flask that allows instructors to create courses and students to enroll and learn.
 
-## Features
+## First Time Setup
 
-- User Authentication (Login/Register)
-- Course Management
-  - Create and manage courses
-  - Add lessons to courses
-  - Browse available courses
-  - Track course progress
-- Forum System
-  - Create topics
-  - Participate in discussions
-  - Course-specific forums
-- Notes System
-  - Create and edit personal notes
-  - Organize study materials
-- Admin Dashboard
-  - User management
-  - Course oversight
-  - System statistics
-
-## Prerequisites
-
-- Python 3.8 or higher
-- pip (Python package manager)
-- Git
-
-## Installation
-
-1. Clone the repository:
+1. Create and activate a virtual environment:
 ```bash
-git clone <repository-url>
-cd e-learning
-```
-
-2. Create a virtual environment:
-```bash
+# Windows
 python -m venv venv
-```
-
-3. Activate the virtual environment:
-- Windows:
-```bash
 venv\Scripts\activate
-```
-- Unix or MacOS:
-```bash
+
+# Linux/Mac
+python3 -m venv venv
 source venv/bin/activate
 ```
 
-4. Install required packages:
+2. Install required packages:
 ```bash
 pip install -r requirements.txt
 ```
 
-## Configuration
-
-1. Create a `.env` file in the root directory with the following variables:
-```env
-SECRET_KEY=your-secret-key-here
-DATABASE_URL=sqlite:///elearning.db
-MAIL_USERNAME=your-email@gmail.com
-MAIL_PASSWORD=your-email-password
-```
-
-2. Create required directories:
-```bash
-mkdir -p static/uploads
-```
-
-## Database Setup
-
-1. Initialize the database:
-```bash
-flask db upgrade
-```
-
-2. Create an admin user:
+3. Set up the admin user and database:
 ```bash
 python create_admin.py
 ```
+
+This script will:
+- Initialize the database
+- Create necessary tables
+- Set up an admin user with the following credentials:
+  - Email: admin@example.com
+  - Password: admin123
+
+If you encounter any errors:
+- Ensure your virtual environment is activated
+- Verify all requirements are installed
+- Check if the database path is writable
+- Make sure your database configuration in config.py is correct
 
 ## Running the Application
 
 1. Start the development server:
 ```bash
-flask run
+python wsgi.py
 ```
 
-2. Access the application at `http://localhost:5000`
+2. Open your browser and navigate to:
+```
+http://localhost:5000
+```
+
+3. Log in with the admin credentials created above.
+
+## Features
+
+- User authentication and authorization
+- Course creation and management
+- Student enrollment system
+- Course content management
+- Notes taking system
+- Discussion forum
+- Admin dashboard
+- File upload support
+- User profiles
 
 ## Project Structure
 
@@ -98,40 +70,36 @@ flask run
 e-learning/
 ├── app/
 │   ├── admin/         # Admin panel functionality
-│   ├── auth/          # Authentication system
+│   ├── auth/          # Authentication
 │   ├── courses/       # Course management
 │   ├── forum/         # Discussion forum
-│   ├── notes/         # Note-taking system
-│   ├── static/        # Static files (CSS, JS)
-│   └── templates/     # HTML templates
+│   ├── main/          # Main routes
+│   ├── notes/         # Notes functionality
+│   ├── static/        # Static files
+│   ├── templates/     # HTML templates
+│   └── models.py      # Database models
 ├── migrations/        # Database migrations
-├── config.py         # Application configuration
-├── requirements.txt  # Python dependencies
-└── wsgi.py          # WSGI entry point
+├── config.py         # Configuration
+├── create_admin.py   # Admin user creation
+└── wsgi.py          # Application entry point
 ```
 
-## Features Usage
+## Configuration
 
-### For Students
-- Register an account
-- Browse available courses
-- Enroll in courses
-- Track progress
-- Participate in forum discussions
-- Create and manage personal notes
+The application can be configured through environment variables or the config.py file:
 
-### For Instructors
-- Create and manage courses
-- Add lessons and course materials
-- Monitor student progress
-- Participate in course discussions
+- `SECRET_KEY`: Application secret key
+- `DATABASE_URL`: Database connection URL (defaults to SQLite)
+- `MAIL_USERNAME`: Email for notifications
+- `MAIL_PASSWORD`: Email password
 
-### For Administrators
-- Manage users and permissions
-- Overview of system statistics
-- Monitor and moderate content
-- Manage course catalog
+## Contributing
 
-## Support
+1. Fork the repository
+2. Create a new branch
+3. Make your changes
+4. Submit a pull request
 
-For any issues or questions, please open an issue in the repository or contact the system administrator.
+## License
+
+This project is licensed under the MIT License.

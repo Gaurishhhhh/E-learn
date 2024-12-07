@@ -10,3 +10,8 @@ Werkzeug==2.2.3
 SQLAlchemy==1.4.41
 PyJWT==2.8.0
 bcrypt==4.0.1
+WTForms==3.0.1
+alembic==1.11.1
+Jinja2>=3.0
+click>=8.0
+itsdangerous>=2.0
